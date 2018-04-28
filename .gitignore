@@ -1,0 +1,9 @@
+bin/
+doc/
+venv/
+.idea/
+__pycache__/
+secret_settings.py
+.secret_settings.py
+instance/
+.webassets-cache
