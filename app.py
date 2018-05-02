@@ -9,13 +9,12 @@ app = Flask(__name__)
 def index():
     # set up session with start value
     session['room_name'] = robogame.START
-    print("In index with Room name:", robogame.START)
     return redirect(url_for('game'))
 
 @app.route("/game", methods=['GET','POST'])
 def game():
     room_name = session.get('room_name')
-    print("in game() with room:", room_name)
+    # check if getting another room, if not end game
     if request.method == 'GET':
         if room_name:
             room = robogame.load_room(room_name)
@@ -24,13 +23,14 @@ def game():
         else:
             return render_template('you_died.html')
     else:
+        # if action(input) to do something, go to next room
         action = request.form.get('action')
         print("action submitted:", action)
 
         if room_name and action:
             room = robogame.load_room(room_name)
             next_room = room.go(action)
-
+            print("next room", next_room)
             if not next_room:
                 session['room name'] = robogame.name_room(room)
             else:

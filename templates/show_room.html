@@ -3,13 +3,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<h1> {{ room.name }} </h1>
+<div id="room">
+<h1 id="roomH1"> {{ room.name }} </h1>
 
 <pre>
 {{ room.description }}
 </pre>
-
+    <p>{{ room.soundEffect }}</p>
 {% if room.name in ["death", "The End"] %}
     <p><a href="/">Play Again?</a></p>
 {% else %}
@@ -18,7 +18,7 @@
         - <input type="text" name="action"> <input type="SUBMIT">
     </form>
     </p>
-
+</div>
 {% endif %}
 
 {% endblock %}
