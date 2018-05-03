@@ -1,4 +1,5 @@
 # From Learn Python the Hard Way
+import random
 
 class Room(object):
 
@@ -7,16 +8,15 @@ class Room(object):
         self.description = description
         self.count = 0
         self.paths = {}
-        self.soundEffect = ""
+        self.soundEffect = ''
 
     def go(self, action):
-        # direction comes from action input
-        print("Self", self)
-        print("direction", action)
-        print("name", self.name)
-
+        # action comes from action input in app.py
         if self.name == "Laser Weapon Armory":
             return check_code(self,action)
+        if self.name == "You Died":
+            # clear out soundEffect for new game after end
+            self.soundEffect = ''
 
         return self.paths.get(action, None)
 
@@ -25,35 +25,40 @@ class Room(object):
 
 central_corridor = Room("Central Corridor",
 '''
-The Google AI robot army is taking over the world and destroying all humankind.
-You are the only member left of the secret Duck Duck Go rebels with access to the
-main server room that is controlling the Google AI army.  Your last mission is to 
-get the neutron destruct bomb from the Weapons Armory, put it in the main server room, 
-and blow it up after getting into your escape hovercraft.
+The Google AI robot army is taking over the world and destroying
+all humankind. You are the only member left of the secret Duck Duck Go
+rebels with access to the main server room that is controlling the
+Google AI army.  Your last mission is to get the neutron destruct bomb
+from the Weapons Armory, put it in the main server room, and blow it up
+after getting into your escape hovercraft.
             
-You're running down the central corridor to the Weapons Armory when a robot
-jumps out.  It's blocking the door to the Armory and about to blast you with its
-ray gun.
+You're running down the central corridor to the Weapons Armory when
+a robot jumps out.  It's blocking the door to the Armory and about to blast
+you with its ray gun.
             
-You are options are (1) to shoot, (2) to dodge and (3) to ask Siri for help.
+You are options are (1) to shoot, (2) to dodge or (3) pull out your phone
+and ask Siri for help.
+
 Enter 1, 2 or 3:
 ''')
 
 laser_weapon_armory = Room('Laser Weapon Armory',
 '''
-Lucky for you were able to ask Siri on your iPhone for help on how to dodge robots.
-Siri distracts the robot by insulting Google's AI, while Siri and the Google AI
-robot exchange insults, you shot the robot in its glass eyes and jump through
-the Amory door.
+Lucky for you were able to ask Siri on your iPhone for help on
+how to dodge robots. Siri distracts the robot by insulting Google's AI,
+while Siri and the Google AI robot exchange insults, you shot the robot
+in its glass eyes and jump through the Amory door.
 
-You do a dive roll into the Weapon Armory, crunch and scan the room for more robots
-that might be hiding.  It's dead quiet, too quiet.  You stand up and run to the far
-side of the room and find the neutron bomb in its container.  There's a keypad
-lock on the box and you need the code to get the bomb out.  If you get the code wrong
-10 times then the lock closes forever and you can't get the bomb.  The code is
-3 digits.
+You do a dive roll into the Weapon Armory, crunch and scan the room for
+more robots that might be hiding. It's dead quiet, too quiet. You stand up
+and run to the far side of the room and find the neutron bomb in its container.
+There's a keypad lock on the box and you need the code to get the bomb out. If
+you get the code wrong 10 times then the lock closes forever and you can't get
+the bomb.  The code is 3 digits.
 
-Make your best attempt at guessing a 3 digit code.
+Make your best attempt at guessing a 3 digit code...but too many guesses may
+result in self destruction!
+
 [keypad]:
 ''')
 
@@ -71,63 +76,73 @@ Enter 1 or 2:
 
 escape_hovercraft = Room("Escape Hovercraft",
 '''
-You rush outside desperately trying to make it to the escape Duck Duck Go hovercrafts 
-before the whole building explodes.  It seem like hardly any robots are in the area,
-so your run is clear of interference.  You get to the parking lot and need to
-pick one.  Some have been damaged by robots but you don't have time to check
-them all.  There are five hovercraft, pick one to take.
+You rush outside desperately trying to make it to the escape Duck Duck Go
+hovercrafts before the whole building explodes. It seem like hardly any 
+robots are in the area, so your run is clear of interference. You get to 
+the parking lot and need to pick one. Some have been damaged by robots but 
+you don't have time to check them all. There are five hovercraft, pick one to
+take.
 
 Enter a number between 1 and 5 to select a hovercraft:
 ''')
 
-the_end_winner = Room('The End',
+the_end_winner = Room('You Won!',
 '''
 You jump into the hovercraft 2 and hit the go button.  The hovercraft
-easily takes off in the air.  As it flies into the sky, you see the server building
-explode...taking out the Google Robot AI army control.  You won!
+easily takes off in the air.  As it flies into the sky, you see the
+server building explode...taking out the Google Robot AI army control.
+You won!
 ''')
 
-the_end_loser = Room("The End",
+the_end_loser = Room("You Died",
 '''
-You jump into a random pod and hit go button.  The hovercraft takes off but
-then implodes as the engine ruptures, blowing you up into a million pieces.
+You jump into a random pod and hit go button.  The hovercraft
+takes off but then implodes as the engine ruptures, blowing 
+you up into a million pieces.
 ''')
 
-the_end_loser_dodge = Room("The End",
+the_end_loser_dodge = Room("You Died",
 '''
-Lise a world class boxer you dodge, weave, slip and slide right as
-the robot's blaster cranks a laser past your head.  In the middle of your
+Like a world class boxer you dodge, weave, slip and slide right as
+the robot's blaster cranks a laser past your head. In the middle of your
 artful dodge your foot slips and you bang your head on the metal wall and
-pass out.  You wake up shortly after only to die as the robot blasts you
+pass out. You wake up shortly after only to die as the robot blasts you
 with it's laser.
 ''')
 
-the_end_shoot = Room("The End",
+the_end_shoot = Room("You Died",
 '''
-Quick on the draw you yank out your blaster and fire at the robot.  You're
-laser hits the robot's reflective shield and bounces back at you, striking you 
-dead.  There is no beating the Google AI robots taking over the world.
+Quick on the draw you yank out your blaster and fire at the robot.
+You're laser hits the robot's reflective shield and bounces back at
+you, striking you dead.  There is no beating the Google AI robots
+taking over the world.
 ''')
 
-the_end_loser_throw_bomb = Room("The End",
+the_end_loser_throw_bomb = Room("You Died",
 '''
-In a panic you throw the bomb at the group of robots and make a leap for the
-door.  Right as you drop it, a robot shoots you in the back killing you.  As
-you die you see another robot frantically try to disarm the bomb.  You die
-knowing they will probably blow up along with the main server when the bomb goes off.
+In a panic you throw the bomb at the group of robots and make a leap
+for the door. Right as you drop it, a robot shoots you in the back killing
+you. As you die you see another robot frantically try to disarm the bomb.
+You die knowing they will probably blow up along with the main server when
+the bomb goes off.
 ''')
 
-the_end_code_failure = Room ("The End",
+the_end_code_failure = Room ("You Died",
 '''
+EXPLOSION!!!
+
 The lock buzzes one last time and then you hear a sickening
-melting sound as teh mechanism is fused together.  You decide to sit there,
+melting sound as the mechanism is fused together.  You decide to sit there,
 where the Google AI robots find you and blow you up with their laser guns.
 ''')
 
-
+randNum = random.randint(1,5)
 escape_hovercraft.add_paths({
     '2': the_end_winner,
-    ' ': the_end_loser
+    '1': the_end_loser,
+    '3': the_end_loser,
+    '4': the_end_loser,
+    '5': the_end_loser,
 })
 
 generic_death = Room("death", "You died.")
@@ -145,9 +160,9 @@ laser_weapon_armory.add_paths({
 })
 
 central_corridor.add_paths({
-    '1' : the_end_shoot,
-    '2' : the_end_loser_dodge,
-    '3' : laser_weapon_armory
+    '1': the_end_shoot,
+    '2': the_end_loser_dodge,
+    '3': laser_weapon_armory
 })
 
 START = 'central_corridor'
@@ -156,22 +171,17 @@ def check_code(self, action):
     if action == "333":
         self.soundEffect = "CLICK!"
         return self.paths.get("333", None)
-    elif self.count < 3:
+    elif self.count < 10:
         self.count += 1
         self.soundEffect = "BZZZEDDO!!!"
         print("count",self.count)
         return self.paths.get("tryagain", None)
     else:
-        self.soundEffect = "EXPLOSION!!!"
         self.action = "end"
         return self.paths.get("end", None)
 
 
 def load_room(name):
-    '''
-    There is a potential security problem here.
-    Who gets to set name?  Cna that expose a variable?
-    '''
     return globals().get(name)
 
 def name_room(room):

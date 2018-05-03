@@ -1,16 +1,21 @@
 body {
   margin-left: 40px;
   padding: 20px;
-  font-size: 30px
+  font-size: 15px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #444;
-  background-image: url('../static/images/robot.jpg');
+  background-image: url('../static/images/robot2.jpg');
   background-size: cover;
 }
-H2 {
-    style="background-color:DodgerBlue;"
+
+#header {
+    color: #659ab2;
 }
 
-#roomH1 {
+.end {
     color: red;
+}
+
+#roomName {
+    color: blue;
 }

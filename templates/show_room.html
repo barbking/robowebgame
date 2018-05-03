@@ -4,13 +4,13 @@
 
 {% block content %}
 <div id="room">
-<h1 id="roomH1"> {{ room.name }} </h1>
+<h1 id="roomName"> {{ room.name }} </h1>
 
 <pre>
 {{ room.description }}
 </pre>
     <p>{{ room.soundEffect }}</p>
-{% if room.name in ["death", "The End"] %}
+{% if room.name in ["death", "You Died"] %}
     <p><a href="/">Play Again?</a></p>
 {% else %}
     <p>
