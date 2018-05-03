@@ -1,7 +1,4 @@
-## Python Class Project - Flask Demo
-
-### Created a simple interactive game using Flask.
-
+## Python Class Project - Flask Demo using a simple, interactive game
 
 
 
