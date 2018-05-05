@@ -57,7 +57,7 @@ you get the code wrong 10 times then the lock closes forever and you can't get
 the bomb.  The code is 3 digits.
 
 Make your best attempt at guessing a 3 digit code...but too many guesses may
-result in self destruction!
+result in self destruction!  (hint - type help to ask Siri for a hint)
 
 [keypad]:
 ''')
@@ -155,7 +155,7 @@ the_server_room.add_paths({
 laser_weapon_armory.add_paths({
     '333': the_server_room,
     'tryagain': laser_weapon_armory,
-    'end': the_end_code_failure
+    'end': the_end_code_failure,
 
 })
 
@@ -171,6 +171,9 @@ def check_code(self, action):
     if action == "333":
         self.soundEffect = "CLICK!"
         return self.paths.get("333", None)
+    if action == "help":
+        self.soundEffect = "3 is a lucky number when it comes in threes"
+        return self.paths.get("tryagain", None)
     elif self.count < 10:
         self.count += 1
         self.soundEffect = "BZZZEDDO!!!"
