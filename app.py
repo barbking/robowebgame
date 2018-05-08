@@ -2,6 +2,7 @@ from flask import Flask, session, redirect, url_for, escape, request
 from flask import render_template
 from robogameweb import robogame
 import secret_settings
+import boto
 
 app = Flask(__name__)
 
@@ -35,8 +36,12 @@ def game():
                 session['room_name'] = robogame.name_room(next_room)
         return redirect(url_for('game'))
 
-    # change this if put on the internet
-app.secret_key = secret_settings.SECRET_KEY
+# keep secret keys in gitignore, for local deployment uncomment next line
+# app.secret_key = secret_settings.SECRET_KEY
+
+# for heroku deployment
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['S3_KEY'])
 
 if __name__ == '__main__':
     app.run()
