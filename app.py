@@ -37,11 +37,11 @@ def game():
         return redirect(url_for('game'))
 
 # keep secret keys in gitignore, for local deployment uncomment next line
-# app.secret_key = secret_settings.SECRET_KEY
+app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
 
 # for heroku deployment
-from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['S3_KEY'])
+# from boto.s3.connection import S3Connection
+# s3 = S3Connection(os.environ['S3_KEY'])
 
 if __name__ == '__main__':
     app.run()
