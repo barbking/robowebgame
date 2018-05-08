@@ -3,8 +3,7 @@ doc/
 venv/
 .idea/
 __pycache__/
-secret_settings.py
-.secret_settings.py
+.config
 instance/
 .webassets-cache
 .requirements.txt
