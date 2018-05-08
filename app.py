@@ -18,19 +18,17 @@ def game():
     if request.method == 'GET':
         if room_name:
             room = robogame.load_room(room_name)
-            print("Room name", room.name)
             return render_template("show_room.html", room=room)
         else:
             return render_template('you_died.html')
     else:
         # if action(input) to do something, go to next room
         action = request.form.get('action')
-        print("action submitted:", action)
 
         if room_name and action:
             room = robogame.load_room(room_name)
             next_room = room.go(action)
-            print("next room", next_room)
+
             if not next_room:
                 session['room name'] = robogame.name_room(room)
             else:
