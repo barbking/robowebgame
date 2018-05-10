@@ -1,13 +1,13 @@
 bin/
 doc/
-venv/
 .idea/
-__pycache__/
 .config
 instance/
 .webassets-cache
-.requirements.txt
+.requirements
+.runtime
 .DS_Store
+.Procfile
 readme_assets
 
 # Byte-compiled / optimized / DLL files
@@ -56,14 +56,6 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
 
 # Flask stuff:
 instance/

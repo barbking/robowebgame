@@ -36,12 +36,9 @@ def game():
                 session['room_name'] = robogame.name_room(next_room)
         return redirect(url_for('game'))
 
-# keep secret keys in gitignore, for local deployment uncomment next line
-# app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
+# keep secret keys secret, added to config file and gitignore config
 app.secret_key = app.config["SECRET_KEY"]
-# for heroku
-# from boto.s3.connection import S3Connection
-# s3 = S3Connection(os.environ['S3_KEY'])
+
 
 if __name__ == '__main__':
     app.run()
