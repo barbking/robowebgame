@@ -1,11 +1,12 @@
 bin/
 doc/
 .idea/
-.config.py
+/.config.py
+/config.pu
 instance/
 .webassets-cache
-.requirements.txt
-.runtime
+/.requirements.txt
+.runtime.txt
 .DS_Store
 .Procfile
 readme_assets
