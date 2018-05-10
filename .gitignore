@@ -1,10 +1,10 @@
 bin/
 doc/
 .idea/
-.config
+.config.py
 instance/
 .webassets-cache
-.requirements
+.requirements.py
 .runtime
 .DS_Store
 .Procfile
