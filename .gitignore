@@ -4,8 +4,8 @@ doc/
 config.py
 instance/
 .webassets-cache
-requirements.txt
-runtime.txt
+
+
 .DS_Store
 .Procfile
 readme_assets
