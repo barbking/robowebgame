@@ -13,11 +13,10 @@ class Room(object):
     def go(self, action):
         # action comes from action input in app.py
         if self.name == "Laser Weapon Armory":
-            return check_code(self,action)
-        if self.name == "You Died":
-            # clear out soundEffect for new game after end
             self.soundEffect = ''
-
+            return check_code(self,action)
+        if self.name == "You Died" or self.name == "You Win!":
+            self.soundEffect = ''
         return self.paths.get(action, None)
 
     def add_paths(self, paths):
@@ -135,7 +134,10 @@ melting sound as the mechanism is fused together.  You decide to sit there,
 where the Google AI robots find you and blow you up with their laser guns.
 ''')
 
-randNum = random.randint(1,5)
+generic_death = Room("death", "You died.")
+
+# future task, replace hardcoded number with random integer
+# randNum = random.randint(1,5)
 
 escape_hovercraft.add_paths({
     '2': the_end_winner,
@@ -144,8 +146,6 @@ escape_hovercraft.add_paths({
     '4': the_end_loser,
     '5': the_end_loser,
 })
-
-generic_death = Room("death", "You died.")
 
 the_server_room.add_paths({
     '1': the_end_loser_throw_bomb,
@@ -169,10 +169,10 @@ START = 'central_corridor'
 
 def check_code(self, action):
     if action == "333":
-        self.soundEffect = "CLICK!"
+        self.soundEffect = ''
         return self.paths.get("333", None)
     if action == "help":
-        self.soundEffect = "3 is a lucky number when it comes in threes"
+        self.soundEffect = "3 is a lucky number when it comes in threes!"
         return self.paths.get("tryagain", None)
     elif self.count < 10:
         self.count += 1
@@ -180,6 +180,7 @@ def check_code(self, action):
         return self.paths.get("tryagain", None)
     else:
         self.action = "end"
+        self.soundEffect = ''
         return self.paths.get("end", None)
 
 
