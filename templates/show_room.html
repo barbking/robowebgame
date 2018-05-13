@@ -10,7 +10,7 @@
 {{ room.description }}
 </pre>
     <p>{{ room.soundEffect }}</p>
-{% if room.name in ["death", "You Died"] %}
+{% if room.name in ["death", "You Died", "the_end_winner", "You Won!"] %}
     <p><a href="/">Play Again?</a></p>
 {% else %}
     <p>

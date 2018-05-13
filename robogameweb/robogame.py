@@ -59,7 +59,6 @@ the bomb.  The code is 3 digits.
 Make your best attempt at guessing a 3 digit code...but too many guesses may
 result in self destruction!  (hint - type help to ask Siri for a hint)
 
-[keypad]:
 ''')
 
 the_server_room = Room('The Server Room',
@@ -137,6 +136,7 @@ where the Google AI robots find you and blow you up with their laser guns.
 ''')
 
 randNum = random.randint(1,5)
+
 escape_hovercraft.add_paths({
     '2': the_end_winner,
     '1': the_end_loser,
@@ -177,7 +177,6 @@ def check_code(self, action):
     elif self.count < 10:
         self.count += 1
         self.soundEffect = "BZZZEDDO!!!"
-        print("count",self.count)
         return self.paths.get("tryagain", None)
     else:
         self.action = "end"
